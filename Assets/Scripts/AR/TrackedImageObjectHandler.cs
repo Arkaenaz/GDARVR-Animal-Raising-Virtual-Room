@@ -25,7 +25,7 @@ public class TrackedImageObjectHandler : MonoBehaviour
             Debug.Log("Tracked new Image : " + image.referenceImage.name + " | Tracking State : " + image.trackingState);
             GameObject obj = Instantiate(contentObject);
             obj.transform.SetParent(image.transform, true);
-            obj.transform.position = new Vector3(0f, yOffset, 0f);
+            obj.transform.position = image.transform.position;
 
         }
         foreach (ARTrackedImage image in eventArgs.updated)
