@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CatBehaviour : StateMachine<CatBehaviour>
 {
-    [Header("Properties")]
     [SerializeField] private EntityStatField _statField;
+
+    [Header("AI Properties")]
+    [SerializeField]
+    public float _wanderRadius = 10.0f;
+    [SerializeField]
+    public float _wanderTimer = 5.0f;
+
 
     public float movementSpeed = 3;
     public float jumpForce = 300;
     public float timeBeforeNextJump = 1.2f;
     private float canJump = 0f;
 
-    Animator anim;
+    Animator _animator;
     Rigidbody rb;
 
     public Bar _hungerBar;
@@ -24,6 +31,8 @@ public class CatBehaviour : StateMachine<CatBehaviour>
     public float thirstFallRate = 20;
     public float moodFallRate = 15;
 
+    private NavMeshAgent _agent;
+
     private IdleState _idleState;
     private PatrolState _patrolState;
     private DrinkState _drinkState;
@@ -33,8 +42,10 @@ public class CatBehaviour : StateMachine<CatBehaviour>
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        
+        _agent = GetComponent<NavMeshAgent>();
 
         _idleState = new(this);
         _patrolState = new(this);
@@ -43,7 +54,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         _hungryState = new(this);
         _eatState = new(this);
 
-        SwitchState(_patrolState);
+        SwitchState(_idleState);
     }
 
     protected override void Update()
@@ -77,10 +88,10 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         if (movement != Vector3.zero)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
-            anim.SetInteger("Walk", 1);
+            _animator.SetInteger("Walk", 1);
         }
         else {
-            anim.SetInteger("Walk", 0);
+            _animator.SetInteger("Walk", 0);
         }
 
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
@@ -89,7 +100,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         {
                 rb.AddForce(0, jumpForce, 0);
                 canJump = Time.time + timeBeforeNextJump;
-                anim.SetTrigger("jump");
+                _animator.SetTrigger("jump");
         }
     }
 
@@ -98,12 +109,32 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         protected CatStateBase(CatBehaviour entity) : base(entity) {}
     }
 
-    public class IdleState : CatStateBase {
+    public class IdleState : CatStateBase
+    {
+        private float _wanderTicks;
         public IdleState(CatBehaviour entity) : base(entity) {}
-
         public override void Enter()
         {
             Debug.Log("Entered Idle State");
+            _wanderTicks = 0.0f;
+        }
+
+        public override void Update()
+        {
+            _wanderTicks += Time.deltaTime;
+
+            if (Random.Range(0, 100) <= 100 - Entity._statField.currentHunger)
+                Entity.SwitchState(Entity._eatState);
+            if (Random.Range(0, 100) <= 100 - Entity._statField.currentThirst)
+                Entity.SwitchState(Entity._drinkState);
+            if (Random.Range(0, 100) <= 100 - Entity._statField.currentMood)
+                Entity.SwitchState(Entity._playState);
+
+            if (_wanderTicks >= Entity._wanderTimer)
+            {
+                Entity.SwitchState(Entity._patrolState);
+                _wanderTicks = 0.0f;
+            }
         }
     }
 
@@ -113,16 +144,28 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         public override void Enter()
         {
             Debug.Log("Entered Patrol State");
+            Vector3 newPos = NavUtility.RandomNavSphere(Entity.transform.position, Entity._wanderRadius, -1);
+            Entity._agent.SetDestination(newPos);
+            Entity._animator.SetInteger("Walk", 1);
         }
 
         public override void Update()
         {
-           if (Random.Range(0, 100) <= 100 - Entity._statField.currentHunger)
-               Entity.SwitchState(Entity._eatState);
-           if (Random.Range(0, 100) <= 100 - Entity._statField.currentThirst)
-               Entity.SwitchState(Entity._drinkState);
-           if (Random.Range(0, 100) <= 100 - Entity._statField.currentMood)
-               Entity.SwitchState(Entity._playState);
+            if (!Entity._agent.pathPending)
+            {
+                if (Entity._agent.remainingDistance <= Entity._agent.stoppingDistance)
+                {
+                    if (!Entity._agent.hasPath || Entity._agent.velocity.sqrMagnitude == 0f)
+                    {
+                        Entity.SwitchState(Entity._idleState);
+                    }
+                }
+            }
+        }
+
+        public override void Exit()
+        {
+            Entity._animator.SetInteger("Walk", 0);
         }
     }
 
@@ -136,7 +179,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
 
         public override void Update()
         {
-            Entity.SwitchState(Entity._patrolState);
+            Entity.SwitchState(Entity._idleState);
         }
     }
     public class PlayState : CatStateBase
@@ -148,7 +191,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         }
         public override void Update()
         {
-            Entity.SwitchState(Entity._patrolState);
+            Entity.SwitchState(Entity._idleState);
         }
     }
 
@@ -167,7 +210,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         }
         public override void Update()
         {
-            Entity.SwitchState(Entity._patrolState);
+            Entity.SwitchState(Entity._idleState);
         }
     }
 }
