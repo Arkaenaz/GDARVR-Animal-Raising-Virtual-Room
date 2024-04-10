@@ -60,7 +60,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
     protected override void Update()
     {
         //ControllPlayer();
-        Debug.Log("hi");
+        // Debug.Log("hi");
         CurrentState?.Update();
         _hungerBar.UpdateBar(_statField.maxHunger, _statField.currentHunger);
         _thirstBar.UpdateBar(_statField.maxThirst, _statField.currentThirst);

@@ -388,6 +388,8 @@ MonoBehaviour:
     currentThirst: 100
     currentHunger: 100
     currentMood: 100
+  _wanderRadius: 10
+  _wanderTimer: 5
   movementSpeed: 3
   jumpForce: 300
   timeBeforeNextJump: 1.2
