@@ -36,7 +36,7 @@ public class AgentManager : MonoBehaviour
             RaycastHit hitInfo;
             if (Physics.Raycast(r, out hitInfo))
             {
-                if (hitInfo.collider.CompareTag("Plane"))
+                if (hitInfo.collider.CompareTag("Ground"))
                 {
                     MoveAllAgents(hitInfo.point);
                 }
