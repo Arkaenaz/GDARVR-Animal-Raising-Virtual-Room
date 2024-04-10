@@ -39,8 +39,10 @@ public class FurnitureGUIManager : MonoBehaviour
 
     public void HandleSelectFurniture(FurnitureItemGUI item)
     {
-
+        Debug.Log("CLICK");
     }
+
+
     public void OnBackButtonClicked()
     {
         _menuCanvas.gameObject.SetActive(true);

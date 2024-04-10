@@ -27,6 +27,13 @@ public class TrackedImageObjectHandler : MonoBehaviour
             obj.transform.SetParent(image.transform, true);
             obj.transform.position = image.transform.position;
 
+
+            /*if (image.referenceImage.name == "cobblestone")
+                InventoryManager.Instance.
+            if (image.referenceImage.name == "dlsu-logo")
+                Instantiate(currentGameObjects[1], image.transform);
+            if (image.referenceImage.name == "dog")
+                Instantiate(currentGameObjects[2], image.transform);*/
         }
         foreach (ARTrackedImage image in eventArgs.updated)
         {
