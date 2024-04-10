@@ -25,5 +25,155 @@ MonoBehaviour:
       m_GuidHigh: 3143750354108030859
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: unitylogowhiteonblack
+    m_Name: unity
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5298193566277797694
+      m_GuidHigh: 11322420409090873790
+    m_SerializedTextureGuid:
+      m_GuidLow: 15534221202688037257
+      m_GuidHigh: 3895235892623875306
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: 3x3 Shelf
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4722443618832464743
+      m_GuidHigh: 12288994887657474176
+    m_SerializedTextureGuid:
+      m_GuidLow: 2856409290361448275
+      m_GuidHigh: 2320330895572558024
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Armchair
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5406592892480572683
+      m_GuidHigh: 17466408857669543055
+    m_SerializedTextureGuid:
+      m_GuidLow: 1915370835540118138
+      m_GuidHigh: 18434670440633401034
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Book
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5465881559290968897
+      m_GuidHigh: 8480472846223355826
+    m_SerializedTextureGuid:
+      m_GuidLow: 4004869104395150977
+      m_GuidHigh: 5896836528465674488
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Bowl
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5550799192483928385
+      m_GuidHigh: 18372042528355531706
+    m_SerializedTextureGuid:
+      m_GuidLow: 352659768880950561
+      m_GuidHigh: 1120702403948894345
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Carpet
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5044083377295454570
+      m_GuidHigh: 12158544900732772749
+    m_SerializedTextureGuid:
+      m_GuidLow: 12485196986228944833
+      m_GuidHigh: 7656906081823916552
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Cup
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5608955063484412177
+      m_GuidHigh: 6949805157081461409
+    m_SerializedTextureGuid:
+      m_GuidLow: 3599775419736413584
+      m_GuidHigh: 1070177753361759897
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Frame
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4756784071942780798
+      m_GuidHigh: 4212827783046351011
+    m_SerializedTextureGuid:
+      m_GuidLow: 3302295627267192345
+      m_GuidHigh: 15876082175446687227
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: LightscreenTV
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5184031374926586001
+      m_GuidHigh: 17703933585178820247
+    m_SerializedTextureGuid:
+      m_GuidLow: 1717230407571664672
+      m_GuidHigh: 15649901736856783801
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Plant
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4758598489775999839
+      m_GuidHigh: 2636981443625652393
+    m_SerializedTextureGuid:
+      m_GuidLow: 15678369561648814413
+      m_GuidHigh: 15227272418131955258
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Shelf
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4930748129510029098
+      m_GuidHigh: 14578041872035652532
+    m_SerializedTextureGuid:
+      m_GuidLow: 3216752203329822572
+      m_GuidHigh: 14862579819919961320
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Short Table
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5079000213032550307
+      m_GuidHigh: 6494477760135609472
+    m_SerializedTextureGuid:
+      m_GuidLow: 2514198651325669793
+      m_GuidHigh: 5240422614799872907
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Single Bookshelf
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5455909794505294621
+      m_GuidHigh: 2249135864707650180
+    m_SerializedTextureGuid:
+      m_GuidLow: 16849182291620371745
+      m_GuidHigh: 16952779070275434728
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Sofa
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5322414500229778458
+      m_GuidHigh: 556345278676248230
+    m_SerializedTextureGuid:
+      m_GuidLow: 113959969542810386
+      m_GuidHigh: 2782656411970845304
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Square Carpet
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5579475654203556664
+      m_GuidHigh: 3187284441729365901
+    m_SerializedTextureGuid:
+      m_GuidLow: 910970394342636537
+      m_GuidHigh: 16066145051288010331
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: TV
     m_Texture: {fileID: 0}

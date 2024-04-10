@@ -1745,6 +1745,8 @@ GameObject:
   - component: {fileID: 1509096546}
   - component: {fileID: 1509096545}
   - component: {fileID: 1509096544}
+  - component: {fileID: 1509096550}
+  - component: {fileID: 1509096549}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: MainCamera
@@ -1881,6 +1883,33 @@ MonoBehaviour:
     type: 2}
   m_MaxNumberOfMovingImages: 0
   m_TrackedImagePrefab: {fileID: 0}
+--- !u!114 &1509096549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509096541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687382dcf93678a4e8a8b95242b5f1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1509096550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509096541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d29ed240a476c15409a5cce282af4cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 1509096549}
+  forwardOffset: 0
+  models: []
 --- !u!1 &1677870909
 GameObject:
   m_ObjectHideFlags: 0
