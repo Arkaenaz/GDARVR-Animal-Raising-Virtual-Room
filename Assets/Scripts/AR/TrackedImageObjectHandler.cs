@@ -28,12 +28,9 @@ public class TrackedImageObjectHandler : MonoBehaviour
             obj.transform.position = image.transform.position;
 
 
-            /*if (image.referenceImage.name == "cobblestone")
-                InventoryManager.Instance.
-            if (image.referenceImage.name == "dlsu-logo")
-                Instantiate(currentGameObjects[1], image.transform);
-            if (image.referenceImage.name == "dog")
-                Instantiate(currentGameObjects[2], image.transform);*/
+            //if (image.referenceImage.name == "cobblestone")
+                //InventoryManager.Instance.ADD
+            
         }
         foreach (ARTrackedImage image in eventArgs.updated)
         {
@@ -62,6 +59,11 @@ public class TrackedImageObjectHandler : MonoBehaviour
             
             Debug.Log("Removed Image : " + image.referenceImage.name + " | Tracking State : " + image.trackingState);
         }
+    }
+
+    void GenerateFurnitureObj()
+    {
+        //FurnitureObject
     }
 
     /*public void SwitchObjects(int value)

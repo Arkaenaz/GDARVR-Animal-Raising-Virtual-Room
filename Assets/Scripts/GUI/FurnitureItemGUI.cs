@@ -10,6 +10,10 @@ public class FurnitureItemGUI : MonoBehaviour
 {
     [SerializeField] private Image _itemImage;
     private string _name;
+    public string Name
+    {
+        get { return _name; }
+    }
 
     public event Action<FurnitureItemGUI> OnItemClicked;
 

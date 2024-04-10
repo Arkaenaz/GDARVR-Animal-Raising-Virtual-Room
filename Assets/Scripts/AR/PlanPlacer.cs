@@ -14,6 +14,8 @@ using PointerEventData = UnityEngine.EventSystems.PointerEventData;
 
 public class PlanePlacer : MonoBehaviour
 {
+    public static PlanePlacer Instance;
+
     //[SerializeField] private ButtonsSwap btnSwp;
 
     [SerializeField] private ModelMover mover;
@@ -28,6 +30,8 @@ public class PlanePlacer : MonoBehaviour
     [SerializeField] private List<ARRaycastHit> hits = new();
 
     private int selectedModel = -1;
+
+    public string selectedModelName = "";
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +63,7 @@ public class PlanePlacer : MonoBehaviour
                 Debug.Log("Hit a cube");
                 mover.StartMoving(hit.collider.gameObject);
             }
-            else if (raycastManager.Raycast(ray, hits, TrackableType.PlaneWithinPolygon) && !IsPointerOverUIObject() && selectedModel > 0)
+            else if (raycastManager.Raycast(ray, hits, TrackableType.PlaneWithinPolygon) && !IsPointerOverUIObject() && selectedModelName != "")
             {
                 foreach (ARRaycastHit arHit in hits)
                 {
@@ -68,6 +72,7 @@ public class PlanePlacer : MonoBehaviour
                         if (plane.alignment == PlaneAlignment.HorizontalUp)
                         {
                             AnchorObject(arHit.pose.position);
+                            selectedModelName = "";
                             return;
                         }
                             
@@ -90,11 +95,21 @@ public class PlanePlacer : MonoBehaviour
 
         GameObject obj = null;
 
-        if (models[selectedModel - 1] != null)
+        for (int i = 0; i < models.Count; i++)
         {
-            obj = Instantiate(models[selectedModel - 1], newAnchor.transform);
-            obj.transform.localPosition = Vector3.zero + Vector3.up * (obj.GetComponent<Collider>().bounds.size.y / 2);
+            if (models[i].name == selectedModelName)
+            {
+                if (models[i] != null)
+                {
+                    obj = Instantiate(models[i], newAnchor.transform);
+                    obj.transform.localPosition = Vector3.zero + Vector3.up * (obj.GetComponent<Collider>().bounds.size.y / 2);
+                }
+                return;
+            }
         }
+
+        
+        
     }
 
 
@@ -115,6 +130,16 @@ public class PlanePlacer : MonoBehaviour
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         
         return results.Count > 0;
+    }
+
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
 

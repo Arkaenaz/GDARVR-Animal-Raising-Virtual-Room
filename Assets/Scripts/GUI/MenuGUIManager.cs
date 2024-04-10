@@ -7,9 +7,16 @@ using UnityEngine.XR.ARFoundation;
 
 public class MenuGUIManager : MonoBehaviour
 {
+    static public MenuGUIManager Instance;
+
     [SerializeField] private Canvas _expandedButtonGroup;
     [SerializeField] private Canvas _furnitureCanvas;
+    public Canvas FurnitureCanvas
+    {
+        get { return _furnitureCanvas; }
+    }
     [SerializeField] private Canvas _cameraCanvas;
+    
     [SerializeField] private Canvas _settings;
 
     [SerializeField] private Toggle _toggle;
@@ -79,5 +86,15 @@ public class MenuGUIManager : MonoBehaviour
     {
         Debug.Log("Exiting");
         Application.Quit();
+    }
+
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -39,7 +39,10 @@ public class FurnitureGUIManager : MonoBehaviour
 
     public void HandleSelectFurniture(FurnitureItemGUI item)
     {
-        Debug.Log("CLICK");
+        Debug.Log(item.Name);
+        MenuGUIManager.Instance.gameObject.SetActive(true);
+        MenuGUIManager.Instance.FurnitureCanvas.gameObject.SetActive(false);
+        PlanePlacer.Instance.selectedModelName = item.Name;
     }
 
 
