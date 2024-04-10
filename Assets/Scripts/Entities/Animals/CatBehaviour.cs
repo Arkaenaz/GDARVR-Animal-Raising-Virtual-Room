@@ -10,10 +10,11 @@ public class CatBehaviour : StateMachine<CatBehaviour>
 
     [Header("AI Properties")]
     [SerializeField]
-    public float _wanderRadius = 10.0f;
+    public float _wanderRadius = 0.1f;
     [SerializeField]
     public float _wanderTimer = 5.0f;
 
+    public float BehaviorTimer = 2.0f;
 
     public float movementSpeed = 3;
     public float jumpForce = 300;
@@ -44,7 +45,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
     {
         _animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        
+
         _agent = GetComponent<NavMeshAgent>();
 
         _idleState = new(this);
@@ -90,7 +91,8 @@ public class CatBehaviour : StateMachine<CatBehaviour>
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
             _animator.SetInteger("Walk", 1);
         }
-        else {
+        else
+        {
             _animator.SetInteger("Walk", 0);
         }
 
@@ -98,37 +100,55 @@ public class CatBehaviour : StateMachine<CatBehaviour>
 
         if (Input.GetButtonDown("Jump") && Time.time > canJump)
         {
-                rb.AddForce(0, jumpForce, 0);
-                canJump = Time.time + timeBeforeNextJump;
-                _animator.SetTrigger("jump");
+            rb.AddForce(0, jumpForce, 0);
+            canJump = Time.time + timeBeforeNextJump;
+            _animator.SetTrigger("jump");
         }
     }
 
     public abstract class CatStateBase : StateBase<CatBehaviour>
     {
-        protected CatStateBase(CatBehaviour entity) : base(entity) {}
+        protected CatStateBase(CatBehaviour entity) : base(entity) { }
     }
 
     public class IdleState : CatStateBase
     {
         private float _wanderTicks;
-        public IdleState(CatBehaviour entity) : base(entity) {}
+        private float _behaviorTicks;
+        public IdleState(CatBehaviour entity) : base(entity) { }
         public override void Enter()
         {
             Debug.Log("Entered Idle State");
             _wanderTicks = 0.0f;
+            _behaviorTicks = 0.0f;
         }
 
         public override void Update()
         {
             _wanderTicks += Time.deltaTime;
+            _behaviorTicks += Time.deltaTime;
 
-            if (Random.Range(0, 100) <= 100 - Entity._statField.currentHunger)
-                Entity.SwitchState(Entity._eatState);
-            if (Random.Range(0, 100) <= 100 - Entity._statField.currentThirst)
-                Entity.SwitchState(Entity._drinkState);
-            if (Random.Range(0, 100) <= 100 - Entity._statField.currentMood)
-                Entity.SwitchState(Entity._playState);
+            if (_behaviorTicks >= Entity.BehaviorTimer)
+            {
+                switch (Random.Range(0, 3))
+                {
+                    case 0:
+                        if (Random.Range(0, 100) <= 100 - Entity._statField.currentHunger)
+                            Entity.SwitchState(Entity._eatState);
+                        break;
+                    case 1:
+                        if (Random.Range(0, 100) <= 100 - Entity._statField.currentThirst)
+                            Entity.SwitchState(Entity._drinkState);
+                        break;
+                    case 2:
+                        if (Random.Range(0, 100) <= 100 - Entity._statField.currentMood)
+                            Entity.SwitchState(Entity._playState);
+                        break;
+                }
+
+                _behaviorTicks = 0.0f;
+            }
+
 
             if (_wanderTicks >= Entity._wanderTimer)
             {
@@ -174,6 +194,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         public DrinkState(CatBehaviour entity) : base(entity) { }
         public override void Enter()
         {
+            Debug.Log("Entered Drink State");
             Entity._statField.currentThirst = Entity._statField.maxThirst;
         }
 
@@ -187,6 +208,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         public PlayState(CatBehaviour entity) : base(entity) { }
         public override void Enter()
         {
+            Debug.Log("Entered Play State");
             Entity._statField.currentMood = Entity._statField.maxMood;
         }
         public override void Update()
@@ -198,7 +220,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
     public class HungryState : CatStateBase
     {
         public HungryState(CatBehaviour entity) : base(entity) { }
-        
+
     }
 
     public class EatState : CatStateBase
@@ -206,6 +228,7 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         public EatState(CatBehaviour entity) : base(entity) { }
         public override void Enter()
         {
+            Debug.Log("Entered Eat State");
             Entity._statField.currentHunger = Entity._statField.maxHunger;
         }
         public override void Update()
