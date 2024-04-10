@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class CatBehaviour : StateMachine<CatBehaviour>
 {
@@ -24,9 +25,9 @@ public class CatBehaviour : StateMachine<CatBehaviour>
     Animator _animator;
     Rigidbody rb;
 
-    public Bar _hungerBar;
-    public Bar _thirstBar;
-    public Bar _moodBar;
+    public UnityEvent<float, float> HungerUpdate;
+    public UnityEvent<float, float> ThirstUpdate;
+    public UnityEvent<float, float> MoodUpdate;
 
     public float hungerFallRate = 10;
     public float thirstFallRate = 20;
@@ -63,9 +64,13 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         //ControllPlayer();
         // Debug.Log("hi");
         CurrentState?.Update();
-        _hungerBar.UpdateBar(_statField.maxHunger, _statField.currentHunger);
-        _thirstBar.UpdateBar(_statField.maxThirst, _statField.currentThirst);
-        _moodBar.UpdateBar(_statField.maxMood, _statField.currentMood);
+        //_hungerBar.UpdateBar(_statField.maxHunger, _statField.currentHunger);
+        //_thirstBar.UpdateBar(_statField.maxThirst, _statField.currentThirst);
+        //_moodBar.UpdateBar(_statField.maxMood, _statField.currentMood);
+
+        HungerUpdate?.Invoke(_statField.maxHunger, _statField.currentHunger);
+        ThirstUpdate?.Invoke(_statField.maxThirst, _statField.currentThirst);
+        MoodUpdate?.Invoke(_statField.maxMood, _statField.currentMood);
 
         _statField.currentHunger -= Time.deltaTime / hungerFallRate;
         _statField.currentThirst -= Time.deltaTime / thirstFallRate;
@@ -104,6 +109,13 @@ public class CatBehaviour : StateMachine<CatBehaviour>
             canJump = Time.time + timeBeforeNextJump;
             _animator.SetTrigger("jump");
         }
+    }
+
+    void OnEnable()
+    {
+        HungerUpdate.AddListener(PetManager.Instance.HungerBar.UpdateBar);
+        ThirstUpdate.AddListener(PetManager.Instance.ThirstBar.UpdateBar);
+        MoodUpdate.AddListener(PetManager.Instance.MoodBar.UpdateBar);
     }
 
     public abstract class CatStateBase : StateBase<CatBehaviour>

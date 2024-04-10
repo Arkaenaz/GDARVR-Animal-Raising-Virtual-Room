@@ -11,10 +11,12 @@ public class MenuGUIManager : MonoBehaviour
 
     [SerializeField] private Canvas _expandedButtonGroup;
     [SerializeField] private Canvas _furnitureCanvas;
+    
     public Canvas FurnitureCanvas
     {
         get { return _furnitureCanvas; }
     }
+    [SerializeField] private Canvas _petCanvas;
     [SerializeField] private Canvas _cameraCanvas;
     
     [SerializeField] private Canvas _settings;
@@ -58,7 +60,8 @@ public class MenuGUIManager : MonoBehaviour
     {
         _menuOpened = false;
         _expandedButtonGroup.gameObject.SetActive(_menuOpened);
-        // TODO : OPEN PET MENU
+        gameObject.SetActive(false);
+        _petCanvas.gameObject.SetActive(true);
     }
 
     public void OnCameraButtonClicked()
