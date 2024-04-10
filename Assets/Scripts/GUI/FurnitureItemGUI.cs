@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class FurnitureItemGUI : MonoBehaviour
 {
     [SerializeField] private Image _itemImage;
+    private string _name;
 
     public event Action<FurnitureItemGUI> OnItemClicked;
 
@@ -31,10 +32,11 @@ public class FurnitureItemGUI : MonoBehaviour
 
     }
 
-    public void SetData(Sprite sprite)
+    public void SetData(Sprite sprite, string name)
     {
         _itemImage.gameObject.SetActive(true);
         _itemImage.sprite = sprite;
+        _name = name;
         _empty = false;
     }
 

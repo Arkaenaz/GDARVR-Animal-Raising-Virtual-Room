@@ -27,4 +27,9 @@ public class InventoryManager : MonoBehaviour
             _furnitureGUI.AddItem(obj);
         }
     }
+
+    public void AddItem(FurnitureObject obj)
+    {
+        _data.FurnitureObjects.Add(obj);
+    }
 }

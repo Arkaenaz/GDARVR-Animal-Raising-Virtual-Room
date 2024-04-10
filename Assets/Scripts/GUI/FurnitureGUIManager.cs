@@ -26,7 +26,7 @@ public class FurnitureGUIManager : MonoBehaviour
     {
         FurnitureItemGUI item = Instantiate(_itemPrefab, Vector3.zero, Quaternion.identity);
         item.transform.parent = _contentPanel;
-        item.SetData(obj.Sprite);
+        item.SetData(obj.Sprite, obj.Name);
         _furnitureList.Add(item);
 
         item.OnItemClicked += HandleSelectFurniture;
