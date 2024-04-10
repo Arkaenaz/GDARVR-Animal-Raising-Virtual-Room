@@ -1091,6 +1091,81 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1 &424806270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424806271}
+  - component: {fileID: 424806273}
+  - component: {fileID: 424806272}
+  m_Layer: 5
+  m_Name: SettingsChild
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &424806271
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424806270}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1325870639}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -95.00009, y: -95}
+  m_SizeDelta: {x: 70, y: 70}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &424806272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424806270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b7cc4dcc8ffb6224c8193ade31d620a9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &424806273
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424806270}
+  m_CullTransparentMesh: 1
 --- !u!1 &436146425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,7 +2894,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2032866105}
         m_TargetAssemblyTypeName: MenuGUIManager, Assembly-CSharp
         m_MethodName: OnExitClick
         m_Mode: 1
@@ -3242,7 +3317,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2032866105}
         m_TargetAssemblyTypeName: MenuGUIManager, Assembly-CSharp
         m_MethodName: OnCloseSettingsClicked
         m_Mode: 1
@@ -3396,9 +3471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5632739c732197146ae0e60750d3ca63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HungerBar: {fileID: 1414165308}
-  ThirstBar: {fileID: 1530055005}
-  MoodBar: {fileID: 2079331059}
   _pets: []
 --- !u!4 &1266967725
 Transform:
@@ -3520,7 +3592,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 424806271}
   m_Father: {fileID: 1910682724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
@@ -3967,7 +4040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc653705961815468de6b8b70447e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuCanvas: {fileID: 0}
+  _menuCanvas: {fileID: 2032866104}
   _itemPrefab: {fileID: 4016065533822932926, guid: 920140c928e67ab43a5d4d042d00ff81,
     type: 3}
   _contentPanel: {fileID: 321733346}
@@ -5156,6 +5229,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuCanvas: {fileID: 2032866104}
+  HungerBar: {fileID: 1414165308}
+  ThirstBar: {fileID: 1530055005}
+  MoodBar: {fileID: 2079331059}
 --- !u!114 &1669584214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6352,11 +6428,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _expandedButtonGroup: {fileID: 1910682721}
-  _furnitureCanvas: {fileID: 0}
+  _furnitureCanvas: {fileID: 1420398694}
   _petCanvas: {fileID: 1669584216}
-  _cameraCanvas: {fileID: 0}
-  _settings: {fileID: 0}
-  _toggle: {fileID: 0}
+  _cameraCanvas: {fileID: 2106584002}
+  _settings: {fileID: 1787400245}
+  _toggle: {fileID: 1844798885}
   planeVisualizers: []
 --- !u!114 &2032866106
 MonoBehaviour:
@@ -6776,7 +6852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0a632cad6ab7d41b7d394085031d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuCanvas: {fileID: 0}
+  _menuCanvas: {fileID: 2032866104}
 --- !u!1 &2109694330
 GameObject:
   m_ObjectHideFlags: 0

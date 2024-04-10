@@ -388,21 +388,18 @@ MonoBehaviour:
     currentThirst: 100
     currentHunger: 100
     currentMood: 100
+  _foodBowl: {fileID: 0}
+  _waterDispenser: {fileID: 0}
+  _ballToy: {fileID: 0}
   _wanderRadius: 10
   _wanderTimer: 5
   BehaviorTimer: 2
   movementSpeed: 3
   jumpForce: 300
   timeBeforeNextJump: 1.2
-  HungerUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  ThirstUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  MoodUpdate:
-    m_PersistentCalls:
-      m_Calls: []
+  _hungerBar: {fileID: 4933600031294644740}
+  _thirstBar: {fileID: 685054166386075301}
+  _moodBar: {fileID: 8400298690169167903}
   hungerFallRate: 10
   thirstFallRate: 20
   moodFallRate: 15

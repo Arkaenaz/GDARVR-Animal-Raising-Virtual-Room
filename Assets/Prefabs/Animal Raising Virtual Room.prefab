@@ -3525,6 +3525,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 818132f3b060cac41906e0a9c93026a8, type: 3}
+--- !u!1 &315350316915677422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4129727953756366653, guid: 818132f3b060cac41906e0a9c93026a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4408994077081010131}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5126952404383986518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8793696965693181061, guid: 818132f3b060cac41906e0a9c93026a8,
@@ -3607,6 +3613,12 @@ PrefabInstance:
 --- !u!4 &4130749536040538270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8506995098408084503, guid: da754c8ddf5bab94e896cc39e9a8af49,
+    type: 3}
+  m_PrefabInstance: {fileID: 5718925191851291785}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8430316775586060552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4297336024109346177, guid: da754c8ddf5bab94e896cc39e9a8af49,
     type: 3}
   m_PrefabInstance: {fileID: 5718925191851291785}
   m_PrefabAsset: {fileID: 0}
@@ -3708,8 +3720,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2959725569260358803, guid: a3589667a5f8a4343b7c1460a8a1cc60,
         type: 3}
+      propertyPath: _ballToy
+      value: 
+      objectReference: {fileID: 315350316915677422}
+    - target: {fileID: 2959725569260358803, guid: a3589667a5f8a4343b7c1460a8a1cc60,
+        type: 3}
+      propertyPath: _foodBowl
+      value: 
+      objectReference: {fileID: 8429021938380225987}
+    - target: {fileID: 2959725569260358803, guid: a3589667a5f8a4343b7c1460a8a1cc60,
+        type: 3}
       propertyPath: _wanderRadius
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2959725569260358803, guid: a3589667a5f8a4343b7c1460a8a1cc60,
+        type: 3}
+      propertyPath: _waterDispenser
+      value: 
+      objectReference: {fileID: 8430316775586060552}
+    - target: {fileID: 2959725569260358803, guid: a3589667a5f8a4343b7c1460a8a1cc60,
+        type: 3}
+      propertyPath: _statField.currentThirst
+      value: 18.3
       objectReference: {fileID: 0}
     - target: {fileID: 2959725569260358803, guid: a3589667a5f8a4343b7c1460a8a1cc60,
         type: 3}

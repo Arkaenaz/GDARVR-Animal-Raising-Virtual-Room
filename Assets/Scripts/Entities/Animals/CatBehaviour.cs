@@ -9,6 +9,10 @@ public class CatBehaviour : StateMachine<CatBehaviour>
 {
     [SerializeField] private EntityStatField _statField;
 
+    [SerializeField] private GameObject _foodBowl;
+    [SerializeField] private GameObject _waterDispenser;
+    [SerializeField] private GameObject _ballToy;
+
     [Header("AI Properties")]
     [SerializeField]
     public float _wanderRadius = 0.1f;
@@ -25,9 +29,14 @@ public class CatBehaviour : StateMachine<CatBehaviour>
     Animator _animator;
     Rigidbody rb;
 
-    public UnityEvent<float, float> HungerUpdate;
-    public UnityEvent<float, float> ThirstUpdate;
-    public UnityEvent<float, float> MoodUpdate;
+    //public UnityEvent<float, float> HungerUpdate;
+    //public UnityEvent<float, float> ThirstUpdate;
+    //public UnityEvent<float, float> MoodUpdate;
+
+
+    [SerializeField] private Bar _hungerBar;
+    [SerializeField] private Bar _thirstBar;
+    [SerializeField] private Bar _moodBar;
 
     public float hungerFallRate = 10;
     public float thirstFallRate = 20;
@@ -68,9 +77,9 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         //_thirstBar.UpdateBar(_statField.maxThirst, _statField.currentThirst);
         //_moodBar.UpdateBar(_statField.maxMood, _statField.currentMood);
 
-        HungerUpdate?.Invoke(_statField.maxHunger, _statField.currentHunger);
-        ThirstUpdate?.Invoke(_statField.maxThirst, _statField.currentThirst);
-        MoodUpdate?.Invoke(_statField.maxMood, _statField.currentMood);
+        PetManager.Instance.HungerUpdate?.Invoke(_statField.maxHunger, _statField.currentHunger);
+        PetManager.Instance.ThirstUpdate?.Invoke(_statField.maxThirst, _statField.currentThirst);
+        PetManager.Instance.MoodUpdate?.Invoke(_statField.maxMood, _statField.currentMood);
 
         _statField.currentHunger -= Time.deltaTime / hungerFallRate;
         _statField.currentThirst -= Time.deltaTime / thirstFallRate;
@@ -113,9 +122,16 @@ public class CatBehaviour : StateMachine<CatBehaviour>
 
     void OnEnable()
     {
-        HungerUpdate.AddListener(PetManager.Instance.HungerBar.UpdateBar);
-        ThirstUpdate.AddListener(PetManager.Instance.ThirstBar.UpdateBar);
-        MoodUpdate.AddListener(PetManager.Instance.MoodBar.UpdateBar);
+        PetManager.Instance.HungerUpdate += _hungerBar.UpdateBar;
+        PetManager.Instance.ThirstUpdate += _thirstBar.UpdateBar;
+        PetManager.Instance.MoodUpdate += _moodBar.UpdateBar;
+    }
+
+    void OnDisable()
+    {
+        PetManager.Instance.HungerUpdate -= _hungerBar.UpdateBar;
+        PetManager.Instance.ThirstUpdate -= _thirstBar.UpdateBar;
+        PetManager.Instance.MoodUpdate -= _moodBar.UpdateBar;
     }
 
     public abstract class CatStateBase : StateBase<CatBehaviour>
@@ -207,12 +223,29 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         public override void Enter()
         {
             Debug.Log("Entered Drink State");
-            Entity._statField.currentThirst = Entity._statField.maxThirst;
+            
+            Entity._agent.SetDestination(Entity._waterDispenser.transform.position);
+            Entity._animator.SetInteger("Walk", 1);
         }
 
         public override void Update()
         {
-            Entity.SwitchState(Entity._idleState);
+            if (!Entity._agent.pathPending)
+            {
+                if (Entity._agent.remainingDistance <= Entity._agent.stoppingDistance)
+                {
+                    if (!Entity._agent.hasPath || Entity._agent.velocity.sqrMagnitude == 0f)
+                    {
+                        Entity._statField.currentThirst = Entity._statField.maxThirst;
+                        Entity.SwitchState(Entity._idleState);
+                    }
+                }
+            }
+        }
+
+        public override void Exit()
+        {
+            Entity._animator.SetInteger("Walk", 0);
         }
     }
     public class PlayState : CatStateBase
@@ -221,11 +254,28 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         public override void Enter()
         {
             Debug.Log("Entered Play State");
-            Entity._statField.currentMood = Entity._statField.maxMood;
+
+            Entity._agent.SetDestination(Entity._ballToy.transform.position);
+            Entity._animator.SetInteger("Walk", 1);
         }
         public override void Update()
         {
-            Entity.SwitchState(Entity._idleState);
+            if (!Entity._agent.pathPending)
+            {
+                if (Entity._agent.remainingDistance <= Entity._agent.stoppingDistance)
+                {
+                    if (!Entity._agent.hasPath || Entity._agent.velocity.sqrMagnitude == 0f)
+                    {
+                        Entity._statField.currentMood = Entity._statField.maxMood;
+                        Entity.SwitchState(Entity._idleState);
+                    }
+                }
+            }
+        }
+
+        public override void Exit()
+        {
+            Entity._animator.SetInteger("Walk", 0);
         }
     }
 
@@ -241,11 +291,28 @@ public class CatBehaviour : StateMachine<CatBehaviour>
         public override void Enter()
         {
             Debug.Log("Entered Eat State");
-            Entity._statField.currentHunger = Entity._statField.maxHunger;
+
+            Entity._agent.SetDestination(Entity._foodBowl.transform.position);
+            Entity._animator.SetInteger("Walk", 1);
         }
         public override void Update()
         {
-            Entity.SwitchState(Entity._idleState);
+            if (!Entity._agent.pathPending)
+            {
+                if (Entity._agent.remainingDistance <= Entity._agent.stoppingDistance)
+                {
+                    if (!Entity._agent.hasPath || Entity._agent.velocity.sqrMagnitude == 0f)
+                    {
+                        Entity._statField.currentHunger = Entity._statField.maxHunger;
+                        Entity.SwitchState(Entity._idleState);
+                    }
+                }
+            }
+        }
+
+        public override void Exit()
+        {
+            Entity._animator.SetInteger("Walk", 0);
         }
     }
 }

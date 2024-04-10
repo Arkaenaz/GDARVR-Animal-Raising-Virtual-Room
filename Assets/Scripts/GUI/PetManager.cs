@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PetManager : MonoBehaviour
 {
@@ -8,9 +9,9 @@ public class PetManager : MonoBehaviour
 
     //[SerializeField] private PetGUIManager _petGUI;
 
-    public Bar HungerBar;
-    public Bar ThirstBar;
-    public Bar MoodBar;
+    public UnityAction<float, float> HungerUpdate;
+    public UnityAction<float, float> ThirstUpdate;
+    public UnityAction<float, float> MoodUpdate;
 
     public List<CatBehaviour> _pets;
 
@@ -31,6 +32,10 @@ public class PetManager : MonoBehaviour
         _pets.Add(pet);
     }
 
+    void UpdateBars()
+    {
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +46,6 @@ public class PetManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
