@@ -23,13 +23,14 @@ public class TrackedImageObjectHandler : MonoBehaviour
         {
             
             Debug.Log("Tracked new Image : " + image.referenceImage.name + " | Tracking State : " + image.trackingState);
-            GameObject obj = Instantiate(contentObject);
-            obj.transform.SetParent(image.transform, true);
-            obj.transform.position = image.transform.position;
+            if (image.referenceImage.name == "unity")
+            {
+                GameObject obj = Instantiate(contentObject);
+                obj.transform.SetParent(image.transform, true);
+                obj.transform.position = image.transform.position;
+            }
 
-
-            //if (image.referenceImage.name == "cobblestone")
-                //InventoryManager.Instance.ADD
+            LoadFurnitureObj(image.referenceImage.name);
             
         }
         foreach (ARTrackedImage image in eventArgs.updated)
@@ -61,9 +62,14 @@ public class TrackedImageObjectHandler : MonoBehaviour
         }
     }
 
-    void GenerateFurnitureObj()
+    void LoadFurnitureObj(string name)
     {
-        //FurnitureObject
+        FurnitureObject obj = Resources.Load<FurnitureObject>("Data/"+ name);
+        if (obj != null)
+        {
+            Debug.Log("ItemAdded");
+            InventoryManager.Instance.AddItem(obj);
+        }
     }
 
     /*public void SwitchObjects(int value)
