@@ -5,6 +5,7 @@ using UnityEngine;
 public class MenuGUIManager : MonoBehaviour
 {
     [SerializeField] private Canvas _expandedButtonGroup;
+    [SerializeField] private Canvas _furnitureCanvas;
     [SerializeField] private Canvas _cameraCanvas;
 
     private bool _menuOpened = false;
@@ -30,7 +31,8 @@ public class MenuGUIManager : MonoBehaviour
     {
         _menuOpened = false;
         _expandedButtonGroup.gameObject.SetActive(_menuOpened);
-        // TODO : OPEN FURNISH MENU
+        gameObject.SetActive(false);
+        _furnitureCanvas.gameObject.SetActive(true);
     }
 
     public void OnPetButtonClicked()
