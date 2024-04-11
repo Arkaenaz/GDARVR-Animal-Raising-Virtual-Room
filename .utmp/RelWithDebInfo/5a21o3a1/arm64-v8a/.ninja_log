@@ -1,0 +1,21 @@
+# ninja log v5
+102	682	7344956530581078	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	88a1d5d2abd7b5a
+11	2772	7344956551687226	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	92ef740674f7b592
+685	1101	7344956533820181	C:/Users/Shane/Unity Projects/Animal-Raising-Virtual-Room/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5a21o3a1/obj/arm64-v8a/libswappywrapper.so	4b54193ec3b2d42f
+57	2101	7344956544826627	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	39960d5fd999036c
+1	2128	7344956545128038	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	9dac02d31fefb5e4
+21	2398	7344956547877639	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	3d6a12fec0d0c7a5
+31	2185	7344956545767262	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	f7fb56086aef7986
+76	2315	7344956547008824	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	881b337b413b5ff1
+43	2654	7344956550521265	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	398f0b083eb16296
+2773	2973	7344956553125016	C:/Users/Shane/Unity Projects/Animal-Raising-Virtual-Room/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5a21o3a1/obj/arm64-v8a/libgame.so	8e1e16508ad17ff1
+114	475	7344970038176774	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	88a1d5d2abd7b5a
+477	991	7344970042343477	C:/Users/Shane/Unity Projects/Animal-Raising-Virtual-Room/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5a21o3a1/obj/arm64-v8a/libswappywrapper.so	4b54193ec3b2d42f
+97	1726	7344970050644670	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	39960d5fd999036c
+51	1758	7344970050960186	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	9dac02d31fefb5e4
+105	1800	7344970051435471	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	f7fb56086aef7986
+88	1925	7344970052636706	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	881b337b413b5ff1
+21	1991	7344970053318211	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	3d6a12fec0d0c7a5
+30	2270	7344970056127761	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	398f0b083eb16296
+3	2383	7344970057251998	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	92ef740674f7b592
+2383	2619	7344970058878374	C:/Users/Shane/Unity Projects/Animal-Raising-Virtual-Room/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5a21o3a1/obj/arm64-v8a/libgame.so	8e1e16508ad17ff1
